@@ -4,8 +4,11 @@ project(cpp_opus)
 
 set(CMAKE_CXX_STANDARD 17)
 
-set(SOURCE main.cpp)
-set(HEADER)
+set(SOURCE main.cpp
+        encoder.cpp
+        )
+set(HEADER encoder.h
+        )
 
 add_executable(cpp_opus ${SOURCE})
 
