@@ -4,4 +4,9 @@ project(cpp_opus)
 
 set(CMAKE_CXX_STANDARD 17)
 
-add_executable(cpp_opus main.cpp)
+set(SOURCE main.cpp)
+set(HEADER)
+
+add_executable(cpp_opus ${SOURCE})
+
+target_link_libraries(cpp_opus opus)
