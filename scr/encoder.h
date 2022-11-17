@@ -8,13 +8,21 @@
 #include <opus/opus.h>
 #include <string>
 
+#include "AudioFile.h"
+
 class Encoder
 {
 private:
+    OpusEncoder *_encoder;
+    int _channels;
+    opus_int16 _frame_size;
+    int _error;
+
 
 public:
-    Encoder();
-    std::string encode_by_name(std::string);
+    Encoder(AudioFile<double>);
+    ~Encoder();
+    std::string encode_by_filenames(std::string, std::string);
 };
 
 #endif //CPP_OPUS_ENCODER_H
