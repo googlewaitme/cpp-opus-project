@@ -8,6 +8,7 @@ set(SOURCE main.cpp
         encoder.cpp
         )
 set(HEADER encoder.h
+        AudioFile.h
         )
 
 add_executable(cpp_opus ${SOURCE})
