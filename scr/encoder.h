@@ -14,15 +14,27 @@ class Encoder
 {
 private:
     OpusEncoder *_encoder;
+    AudioFile<double> _audio_file;
     int _channels;
     opus_int16 _frame_size;
+    int _max_frame_size;
+    opus_int32 _max_data_bytes;
     int _error;
+    int _application;
+    opus_int16 *_inbuf;
+    unsigned char *_outbuf;
+    unsigned char *_fbytes;
+
+
+    int _input_buffer_position;
+
+    int _set_pcm();
 
 
 public:
-    Encoder(AudioFile<double>);
+    Encoder(const AudioFile<double>&);
     ~Encoder();
-    std::string encode_by_filenames(std::string, std::string);
+    void encode_by_filename(const char *);
 };
 
 #endif //CPP_OPUS_ENCODER_H
