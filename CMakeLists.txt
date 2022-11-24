@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.16)
 project(cpp_opus)
 
-list(APPEND CMAKE_MODULE_PATH ${CMAKE_SOURCE_DIR}/cmake)
+list(APPEND CMAKE_MODULE_PATH ${CMAKE_SOURCE_DIR}/external/cmake)
 
 set(CMAKE_CXX_STANDARD 17)
 
