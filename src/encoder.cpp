@@ -7,7 +7,7 @@
 #include <iostream>
 #include <vector>
 #include "encoder.h"
-#include "AudioFile.h"
+#include <AudioFile.h>
 
 #include <opus/opusenc.h>
 

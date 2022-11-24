@@ -10,7 +10,7 @@ set(SOURCE src/main.cpp
         )
 
 set(HEADER src/encoder.h
-        src/AudioFile.h
+        external/Audiofile/AudioFile.h
         )
 
 find_package(Opus REQUIRED)
@@ -19,11 +19,12 @@ add_executable(cpp_opus ${SOURCE})
 
 set(INCLUDE_DIRECTORIES
         ${OPUS_INCLUDE_DIRS}
+        ${OPUS_INCLUDE_DIRS}/opus
+        external/Audiofile
         )
 
 set(DEPENDENCIES
         ${OPUS_LIBRARIES})
 
 target_include_directories(cpp_opus PUBLIC ${INCLUDE_DIRECTORIES})
-
-target_link_libraries(cpp_opus PRIVATE ${DEPENDENCIES})
+target_link_libraries(cpp_opus PUBLIC ${DEPENDENCIES})

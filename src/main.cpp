@@ -5,7 +5,7 @@
 #include <ogg/ogg.h>
 #include <iostream>
 #include "encoder.h"
-#include "AudioFile.h"
+#include <AudioFile.h>
 #include <string>
 
 
