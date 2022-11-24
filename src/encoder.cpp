@@ -9,6 +9,8 @@
 #include "encoder.h"
 #include "AudioFile.h"
 
+#include <opus/opusenc.h>
+
 
 Encoder::Encoder(const AudioFile<double>& file)
 {
