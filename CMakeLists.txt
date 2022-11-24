@@ -5,22 +5,20 @@ list(APPEND CMAKE_MODULE_PATH ${CMAKE_SOURCE_DIR}/external/cmake)
 
 set(CMAKE_CXX_STANDARD 17)
 
-set(SOURCE src/main.cpp
-        src/encoder.cpp
-        )
-
-set(HEADER src/encoder.h
-        external/Audiofile/AudioFile.h
+file(GLOB_RECURSE SOURCES
+        src/*.h
+        src/*.cpp
         )
 
 find_package(Opus REQUIRED)
 
-add_executable(cpp_opus ${SOURCE})
+add_executable(cpp_opus ${SOURCES})
 
 set(INCLUDE_DIRECTORIES
         ${OPUS_INCLUDE_DIRS}
         ${OPUS_INCLUDE_DIRS}/opus
         external/Audiofile
+        /usr/include/
         )
 
 set(DEPENDENCIES

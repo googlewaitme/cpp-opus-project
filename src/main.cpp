@@ -1,6 +1,3 @@
-//
-// Created by bulat on 16.11.22.
-//
 #include <opus/opus.h>
 #include <ogg/ogg.h>
 #include <iostream>

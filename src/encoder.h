@@ -1,11 +1,7 @@
-//
-// Created by bulat on 16.11.22.
-//
-
-#ifndef CPP_OPUS_ENCODER_H
-#define CPP_OPUS_ENCODER_H
+#pragma once
 
 #include <opus/opus.h>
+#include <opus/opusenc.h>
 #include <string>
 
 #include <AudioFile.h>
@@ -38,5 +34,3 @@ public:
     ~Encoder();
     void encode_by_filename(const char *);
 };
-
-#endif //CPP_OPUS_ENCODER_H
