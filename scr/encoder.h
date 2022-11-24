@@ -16,7 +16,7 @@ private:
     OpusEncoder *_encoder;
     AudioFile<double> _audio_file;
     int _channels;
-    opus_int16 _frame_size;
+    opus_int32 _frame_size;
     int _max_frame_size;
     opus_int32 _max_data_bytes;
     int _error;
@@ -24,6 +24,8 @@ private:
     opus_int16 *_inbuf;
     unsigned char *_outbuf;
     unsigned char *_fbytes;
+
+    std::vector<opus_int16> _pcm;
 
 
     int _input_buffer_position;

@@ -2,6 +2,7 @@
 // Created by bulat on 16.11.22.
 //
 #include <opus/opus.h>
+#include <ogg/ogg.h>
 #include <iostream>
 #include "encoder.h"
 #include "AudioFile.h"
@@ -21,8 +22,9 @@ int main()
     Encoder encoder(wav_file);
 
     std::string input_filename = "input.wav";
-    const char *output_filename = "/home/bulat/music/output.opus";
+    const char *output_filename = "/home/bulat/music/output_myprogram.opus";
     encoder.encode_by_filename(output_filename);
+
 
     std::cout << "Encoded filename: " << output_filename << std::endl;
     return 0;
