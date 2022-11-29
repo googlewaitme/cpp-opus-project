@@ -18,9 +18,9 @@ int main()
     std::cout << opus_get_version_string() << std::endl;
     Encoder encoder(wav_file);
 
-    std::string input_filename = "input.wav";
+    const char *input_filename = "/home/bulat/music/input.wav";
     const char *output_filename = "/home/bulat/music/output_myprogram.opus";
-    encoder.encode_by_filename(output_filename);
+    encoder.encode(input_filename, output_filename);
 
 
     std::cout << "Encoded filename: " << output_filename << std::endl;

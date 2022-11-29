@@ -13,8 +13,8 @@ private:
     AudioFile<double> _audio_file;
     int _channels;
     opus_int32 _frame_size;
+    opus_int32 _rate;
     int _max_frame_size;
-    opus_int32 _max_data_bytes;
     int _error;
     int _application;
     opus_int16 *_inbuf;
@@ -23,14 +23,13 @@ private:
 
     std::vector<opus_int16> _pcm;
 
+    std::string _artist;
+    std::string _title;
 
     int _input_buffer_position;
-
-    int _set_pcm();
-
 
 public:
     Encoder(const AudioFile<double>&);
     ~Encoder();
-    void encode_by_filename(const char *);
+    void encode(const char *, const char *);
 };
