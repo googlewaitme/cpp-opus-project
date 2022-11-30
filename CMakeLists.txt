@@ -12,18 +12,19 @@ file(GLOB_RECURSE SOURCES
 
 find_package(Opus REQUIRED)
 
-add_executable(cpp_opus ${SOURCES}) # external/opus/opusenc.h)
+add_executable(cpp_opus ${SOURCES})
 
 set(INCLUDE_DIRECTORIES
         ${OPUS_INCLUDE_DIRS}
+        ${OPUS_INCLUDE_DIRS}/opus
         ${CMAKE_CURRENT_SOURCE_DIR}/external/Audiofile
-        # ${CMAKE_CURRENT_SOURCE_DIR}/external/opus
         /usr/include
         /usr/local/include
         )
 
 set(DEPENDENCIES
-        ${OPUS_LIBRARIES})
+        ${OPUS_LIBRARIES}
+        opusenc)
 
 message(STATUS "${INCLUDE_DIRECTORIES}")
 

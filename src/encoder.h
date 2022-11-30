@@ -6,6 +6,7 @@
 
 #include <AudioFile.h>
 
+
 class Encoder
 {
 private:
@@ -14,19 +15,11 @@ private:
     int _channels;
     opus_int32 _frame_size;
     opus_int32 _rate;
-    int _max_frame_size;
     int _error;
     int _application;
-    opus_int16 *_inbuf;
-    unsigned char *_outbuf;
-    unsigned char *_fbytes;
 
-    std::vector<opus_int16> _pcm;
-
-    std::string _artist;
-    std::string _title;
-
-    int _input_buffer_position;
+    std::size_t _READ_SIZE_FROM_FILE;
+    short* _buf;
 
 public:
     Encoder(const AudioFile<double>&);

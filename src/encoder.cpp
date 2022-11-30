@@ -1,40 +1,29 @@
-#include <string>
 #include <cstdio>
 #include <iostream>
 #include <vector>
 #include "encoder.h"
 #include <AudioFile.h>
+#include <opus/opus.h>
 #include <opus/opusenc.h>
-
 
 
 Encoder::Encoder(const AudioFile<double>& file)
 {
-    _audio_file = file;
     _channels = file.getNumChannels();
-    _frame_size = file.getSampleRate(); // file.getNumSamplesPerChannel() > 0xFF ? 0xFF : file.getNumSamplesPerChannel();
+    _frame_size = file.getSampleRate();
     _rate = file.getSampleRate();
-    _max_frame_size = 1500;  // Не знаю почему такие числа, будет круто если кто-то поможет.
     _application = OPUS_APPLICATION_AUDIO;
     _error=0;
-    _inbuf = new opus_int16[_channels * _frame_size];
-    _outbuf = new unsigned char[_channels * _frame_size];
-    _fbytes = new unsigned char[_channels * _max_frame_size];
-    _input_buffer_position = 0;
 
+    _READ_SIZE_FROM_FILE = 480;
+    _buf = new short [_READ_SIZE_FROM_FILE];
     _encoder = opus_encoder_create(_frame_size, _channels, _application,&_error);
-
-    _artist = "some_artist";
-    _title = "some_title";
 }
 
 
 Encoder::~Encoder()
 {
     opus_encoder_destroy(_encoder);
-    delete [] _inbuf;
-    delete [] _outbuf;
-    delete [] _fbytes;
 }
 
 
@@ -48,18 +37,16 @@ void Encoder::encode(const char * filename_in, const char * filename_out)
     }
 
     OggOpusComments* comments = ope_comments_create();
-    ope_comments_add(comments, "ARTIST", _artist);
-    ope_comments_add(comments, "TITLE", _title);
+    ope_comments_add(comments, "ARTIST", "ARTIST");
+    ope_comments_add(comments, "TITLE", "TITLE");
 
     OggOpusEnc *enc = ope_encoder_create_file(filename_out, comments, _rate, _channels, 0, &_error);
 
-    std::size_t READ_SIZE_FROM_FILE = 480;
     while (true) {
-        fprintf(stdout, "read next chunk\n");
-        short buf[READ_SIZE_FROM_FILE];
-        int ret = fread(buf, sizeof(short), READ_SIZE_FROM_FILE, fin);
+        int ret = fread(_buf, sizeof(short), _READ_SIZE_FROM_FILE, fin);
         if (ret > 0) {
-            ope_encoder_write(enc, buf, ret / 2);
+            // div 2 because one number is two 2 byte.
+            ope_encoder_write(enc, _buf, ret / 2);
         } else
             break;
     }
